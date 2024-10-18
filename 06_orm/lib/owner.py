@@ -68,7 +68,7 @@ class Owner:
     @classmethod
     def get_all(cls):
         sql = """
-            SELECT * FROM pets
+            SELECT * FROM owners
         """
 
         return [cls.create_instance(row) for row in CURSOR.execute(sql).fetchall()]
@@ -116,7 +116,7 @@ class Owner:
         if not row:
 
             sql = """
-            INSERT INTO pets(name, phone, email, address)
+            INSERT INTO owners(name, phone, email, address)
             VALUES (?,?,?,?)
         """
             CURSOR.execute(sql, (name, phone, email, address))
@@ -132,4 +132,4 @@ class Owner:
             WHERE id = ?
         """
 
-        CURSOR.execute(sql, (self.name, self.breed, self.id))
+        CURSOR.execute(sql, (self.name, self.phone, self.id))
